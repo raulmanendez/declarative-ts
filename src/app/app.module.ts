@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PostsComponent } from './pages/posts/posts.component';
 import { PostsDeclarativeComponent } from './pages/posts-declarative/posts-declarative.component';
+import { PostssComponent } from './pages/postss/postss.component';
+import { PostComponent } from './pages/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     PostsComponent,
-    PostsDeclarativeComponent
+    PostsDeclarativeComponent,
+    PostssComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

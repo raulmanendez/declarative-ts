@@ -1,0 +1,26 @@
+
+<div class="row" *ngIf="post$ | async as post">
+    <div class="col-md-12">
+        <h3>Post Details</h3>
+        <div class="card" >
+            <div class="card-body">
+                <div class="mb-2">
+                    <label>Id:</label> {{ post.id }}
+                </div>
+
+                <div class="mb-2">
+                    <label>Title:</label> {{ post.title }}
+                </div>
+
+                <div class="mb-2">
+                    <label>Description:</label> {{ post.description }}
+                </div>
+
+                <div class="mb-2">
+                    <label>Student Id:</label> {{ post.student }}
+                </div>
+
+            </div>
+          </div>
+    </div>
+</div>

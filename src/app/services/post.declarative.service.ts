@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../model/post.model'
-import { combineLatest, map } from 'rxjs';
+import { Subject, combineLatest, filter, map } from 'rxjs';
 import { StudentDeclarativeService } from './student.declarative';
 
 @Injectable({
@@ -13,6 +13,13 @@ export class PostDeclarativeService {
     private http:HttpClient,
     private studentDeclarativeService:StudentDeclarativeService) { }
 
+    private subject=new Subject<string>()
+    private selectedPostIdObs$=this.subject.asObservable()
+
+    setPostId(postId:string) {
+      this.subject.next(postId);
+    }
+
     posts$=this.http.get<{ [id:string] : Post }>('https://ng-store-a4630-default-rtdb.firebaseio.com/posts.json')
     .pipe(map(response => {
 
@@ -22,6 +29,13 @@ export class PostDeclarativeService {
       }
       return posts;
     }))
+
+    post$=combineLatest([this.posts$,this.selectedPostIdObs$])
+    .pipe(
+      map(([posts,selectedPostId]) => {
+        return posts.find(post => post.id==selectedPostId)
+      })
+    )
 
     postsWithStudents$ = combineLatest([this.posts$,this.studentDeclarativeService.students$])
           .pipe(

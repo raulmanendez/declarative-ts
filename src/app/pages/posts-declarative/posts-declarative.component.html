@@ -2,6 +2,14 @@
     <div class="col-md-12">
         <h3>Posts Data - Declarative</h3>
 
+        <div class="mb-3">
+            <select class="form-select" (change)="onStudentChange($event)">
+                <option [value]="'ALL'">Select Student</option>
+                <option *ngFor="let student of students$ | async" 
+                [value]="student.id" [label]="student.name"></option>
+            </select>
+        </div>
+
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -13,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let post of posts$ | async">
+                <tr *ngFor="let post of postsFiltered$ | async">
                     <td>{{ post.id }}</td>
                     <td>{{ post.title }}</td>
                     <td>{{ post.description }}</td>
