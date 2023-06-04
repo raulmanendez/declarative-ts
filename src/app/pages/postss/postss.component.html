@@ -1,10 +1,19 @@
-<div class="row">
+<div class="row" *ngIf="errorObservable | async as error">
+    <div class="col-md-12">
+        <div class="alert alert-danger">
+            {{ error }}
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="vm$ | async as view">
     <div class="col-md-8">
         <h3>All Posts</h3>
 
         <ul class="list-group">
-            <li class="list-group-item" 
-                *ngFor="let post of posts$ | async"
+            <li class="list-group-item"
+                [class.active]="post.id==view.post?.id" 
+                *ngFor="let post of view.posts"
                 (click)="onSelectPost(post)">{{ post.description }} 
             </li>
         </ul> 

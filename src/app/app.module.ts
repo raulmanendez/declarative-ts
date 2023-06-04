@@ -8,6 +8,7 @@ import { PostsComponent } from './pages/posts/posts.component';
 import { PostsDeclarativeComponent } from './pages/posts-declarative/posts-declarative.component';
 import { PostssComponent } from './pages/postss/postss.component';
 import { PostComponent } from './pages/post/post.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PostComponent } from './pages/post/post.component';
     PostsComponent,
     PostsDeclarativeComponent,
     PostssComponent,
-    PostComponent
+    PostComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

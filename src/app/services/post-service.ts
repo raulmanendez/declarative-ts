@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from '../model/post.model'
-import { map, mergeMap } from 'rxjs';
+import { map, mergeMap, share, shareReplay } from 'rxjs';
 import { StudentService } from './student.service';
 
 @Injectable({
@@ -22,7 +22,8 @@ export class PostService {
         posts.push({ ...response[id],id})
       }
       return posts;
-    }))
+    }),
+    shareReplay(1))
   }
 
   getPostsAlongStudents() {

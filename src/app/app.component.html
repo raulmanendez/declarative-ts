@@ -1,5 +1,10 @@
 <app-header></app-header>
 
+
+<div *ngIf="load$ | async as load">
+  <app-loader *ngIf="load"></app-loader>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col-d-12">
