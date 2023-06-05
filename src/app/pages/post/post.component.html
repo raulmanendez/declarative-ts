@@ -1,5 +1,19 @@
+<div class="row" *ngIf="errorMessageAction$ | async as errorMessage">
+    <div class="col-md-12">
+      <div class="alert alert-danger">{{ errorMessage }}</div>
+    </div>
+  </div>
+
 <div class="row" *ngIf="post$ | async as post">
     <div class="col-md-12">
+        <button class="btn btn-warning" (click)="onUpdatePost()">
+          Update Post
+        </button>
+        <button class="btn btn-warning" (click)="onDeletePost(post)">
+          Delete Post
+        </button>
+    
+    
         <h3>Post Details</h3>
         <div class="card" >
             <div class="card-body">
@@ -22,4 +36,6 @@
             </div>
           </div>
     </div>
+
+    <app-update-post *ngIf="showUpdatePost"></app-update-post>
 </div>

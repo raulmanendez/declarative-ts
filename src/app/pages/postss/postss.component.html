@@ -7,19 +7,23 @@
 </div>
 
 <div class="row" *ngIf="vm$ | async as view">
-    <div class="col-md-8">
+    <div class="col-md-4">
         <h3>All Posts</h3>
+        <div class="my-2">
+            <button (click)="onAddPost()" class="btn btn-primary">Add Post</button>
+        </div>  
 
         <ul class="list-group">
             <li class="list-group-item"
-                [class.active]="post.id==view.post?.id" 
+                [class.active]="post.id==view.post.id" 
                 *ngFor="let post of view.posts"
-                (click)="onSelectPost(post)">{{ post.description }} 
+                (click)="onSelectPost(post)">{{ post.description }} ({{ post.studentName }})
             </li>
         </ul> 
     </div>
 
-    <div class="col-md-4">
-        <app-post></app-post>
+     <div class="col-md-8">
+        <app-post *ngIf="!showAddPost"></app-post>
+        <app-add-post *ngIf="showAddPost"></app-add-post>
     </div>
 </div>

@@ -12,8 +12,11 @@ import { PostDeclarativeService } from 'src/app/services/post.declarative.servic
 })
 export class PostssComponent {
 
+  showAddPost = false;
+
   errorSubject=new Subject();
   errorObservable=this.errorSubject.asObservable();
+
   constructor(
     private loaderService:LoaderService,
     private postsDeclarativeService:PostDeclarativeService) {
@@ -21,7 +24,7 @@ export class PostssComponent {
      }
 
   post$=this.postsDeclarativeService.post$;
-  posts$=this.postsDeclarativeService.posts$.pipe(
+  posts$=this.postsDeclarativeService.allPosts$.pipe(
     tap(posts => {
       posts[0] && this.onSelectPost(posts[0])
     }),
@@ -43,7 +46,12 @@ export class PostssComponent {
   )
 
   onSelectPost(post:Post) {
+    this.showAddPost = false;
     this.postsDeclarativeService.setPostId(post.id)
+  }
+
+  onAddPost() {
+    this.showAddPost = true;
   }
 
 }
